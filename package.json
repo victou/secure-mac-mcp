@@ -12,6 +12,8 @@
     "approval:list": "tsx packages/mcp-server/src/approval-cli.ts list",
     "approval:approve": "tsx packages/mcp-server/src/approval-cli.ts approve",
     "approval:deny": "tsx packages/mcp-server/src/approval-cli.ts deny",
+    "desktop:dev": "pnpm --filter @secure-mac-mcp/desktop tauri:dev",
+    "desktop:build": "pnpm --filter @secure-mac-mcp/desktop tauri:build",
     "build": "tsc -p tsconfig.json",
     "test": "vitest run",
     "lint": "eslint .",

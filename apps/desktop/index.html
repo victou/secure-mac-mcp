@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>secure-mac-mcp approvals</title>
+    <script type="module" src="/src/main.ts"></script>
+  </head>
+  <body>
+    <main class="approval-shell">
+      <header class="topbar">
+        <div>
+          <h1>Approvals</h1>
+          <p>Review pending macOS actions before execution.</p>
+        </div>
+        <button id="refresh" type="button">Refresh</button>
+      </header>
+      <section id="status" class="status" aria-live="polite"></section>
+      <section id="approvals" class="approval-list"></section>
+    </main>
+  </body>
+</html>

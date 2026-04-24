@@ -59,6 +59,14 @@ pnpm approval:deny <request-id>
 
 This file-based flow is the bridge toward the future desktop approval UI in `apps/desktop`.
 
+You can also use the desktop approval UI:
+
+```sh
+pnpm desktop:dev
+```
+
+The desktop app reads the same pending approvals and writes the same decisions as the CLI.
+
 ## Claude Desktop
 
 Add a server entry that launches the stdio MCP server:
@@ -101,7 +109,7 @@ Add a server entry that launches the stdio MCP server:
 - `packages/sdk`: restricted plugin context types.
 - `packages/adapters`: macOS adapters.
 - `plugins/safari`: built-in Safari plugin.
-- `apps/desktop`: placeholder for a future Tauri app.
+- `apps/desktop`: Tauri approval UI for pending tool requests.
 
 ## AI Collaboration
 
