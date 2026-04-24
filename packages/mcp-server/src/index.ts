@@ -5,13 +5,13 @@ import { CallToolRequestSchema, ListToolsRequestSchema } from "@modelcontextprot
 import { MacAdapterContext } from "../../adapters/src/index.js";
 import {
   ConsoleAuditLogger,
-  DenyByDefaultApprovalProvider,
   PolicyEngine,
   ToolDispatcher,
   ToolRegistry,
   loadPlugins
 } from "../../core/src/index.js";
 import type { JsonObject, PluginContext, PluginResult } from "../../sdk/src/index.js";
+import { createApprovalProvider } from "./approval-config.js";
 
 const SERVER_NAME = "secure-mac-mcp";
 const SERVER_VERSION = "0.1.0";
@@ -28,9 +28,16 @@ function toMcpContent(result: PluginResult): PluginResult["content"] {
   return result.content;
 }
 
-export async function createServer(pluginsRoot: string): Promise<Server> {
+export interface ServerOptions {
+  approvalMode?: string;
+}
+
+export async function createServer(
+  pluginsRoot: string,
+  options: ServerOptions = {}
+): Promise<Server> {
   const logger = new ConsoleAuditLogger();
-  const approval = new DenyByDefaultApprovalProvider();
+  const approval = createApprovalProvider(options.approvalMode);
   const adapters = new MacAdapterContext();
   const context: PluginContext = {
     adapters,
@@ -87,7 +94,9 @@ export async function createServer(pluginsRoot: string): Promise<Server> {
 
 export async function main(): Promise<void> {
   const pluginsRoot = resolve(process.cwd(), "plugins");
-  const server = await createServer(pluginsRoot);
+  const server = await createServer(pluginsRoot, {
+    approvalMode: process.env.SECURE_MAC_MCP_APPROVAL_MODE
+  });
   const transport = new StdioServerTransport();
 
   await server.connect(transport);

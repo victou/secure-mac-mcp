@@ -35,6 +35,14 @@ pnpm build
 
 The current milestone includes the `safari.open_url` tool. It requires approval, and the default approval provider denies approval so the policy engine is active and safe by default.
 
+For local development, you can explicitly enable automatic approval for allowlisted tools:
+
+```sh
+SECURE_MAC_MCP_APPROVAL_MODE=auto pnpm dev
+```
+
+Only use `auto` for a trusted local setup. The policy engine still validates schemas and allowlists tools, but approval-gated tools no longer stop for a user decision.
+
 ## Claude Desktop
 
 Add a server entry that launches the stdio MCP server:
@@ -44,7 +52,10 @@ Add a server entry that launches the stdio MCP server:
   "mcpServers": {
     "secure-mac-mcp": {
       "command": "pnpm",
-      "args": ["--dir", "/absolute/path/to/secure-mac-mcp", "dev"]
+      "args": ["--dir", "/absolute/path/to/secure-mac-mcp", "dev"],
+      "env": {
+        "SECURE_MAC_MCP_APPROVAL_MODE": "auto"
+      }
     }
   }
 }
@@ -58,7 +69,10 @@ Add a server entry that launches the stdio MCP server:
     "secure-mac-mcp": {
       "type": "stdio",
       "command": "pnpm",
-      "args": ["--dir", "/absolute/path/to/secure-mac-mcp", "dev"]
+      "args": ["--dir", "/absolute/path/to/secure-mac-mcp", "dev"],
+      "env": {
+        "SECURE_MAC_MCP_APPROVAL_MODE": "auto"
+      }
     }
   }
 }
