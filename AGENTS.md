@@ -32,8 +32,13 @@ Before finishing implementation work, run the narrowest useful verification avai
 
 ## Git Conventions
 
-- Use concise, imperative commit messages.
-- Stage only files that belong to the requested change.
+- Prefer atomic commits: one coherent intent per commit.
+- Use Conventional Commits for new commits: `type(scope): summary`.
+- Use common types such as `feat`, `fix`, `docs`, `test`, `refactor`, `chore`, `ci`, and `build`.
+- Write summaries in imperative mood, lower-case after the type, and keep the first line concise.
+- Add a commit body when the "why" or tradeoffs are not obvious from the diff.
+- Stage only files that belong to the requested change, preferably with explicit paths.
+- Review `git diff --cached` before committing.
 - Preserve unrelated worktree changes.
 - Prefer `main` as the default branch unless the repository configuration says otherwise.
 
