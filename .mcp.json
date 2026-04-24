@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "secure-mac-mcp": {
+      "type": "stdio",
+      "command": "/opt/homebrew/bin/pnpm",
+      "args": [
+        "--dir",
+        "/Users/victou/Documents/secure-mac-mcp",
+        "dev"
+      ],
+      "env": {
+        "SECURE_MAC_MCP_APPROVAL_MODE": "auto"
+      }
+    }
+  }
+}
