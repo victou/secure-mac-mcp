@@ -5,10 +5,6 @@ description = "Desktop approval UI for secure-mac-mcp"
 authors = ["secure-mac-mcp"]
 edition = "2021"
 
-[lib]
-name = "secure_mac_mcp_desktop_lib"
-crate-type = ["staticlib", "cdylib", "rlib"]
-
 [build-dependencies]
 tauri-build = { version = "2", features = [] }
 

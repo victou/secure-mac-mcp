@@ -57,6 +57,7 @@ tmp/
 temp/
 .cache/
 target/
+**/src-tauri/gen/
 
 # Local agent/tool state
 .codex/
