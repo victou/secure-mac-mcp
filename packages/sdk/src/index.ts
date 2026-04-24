@@ -10,6 +10,20 @@ export interface ApprovalDecision {
   reason?: string;
 }
 
+export interface ApprovalRequest {
+  id: string;
+  tool: ToolRequest;
+  input: JsonObject;
+  createdAt: string;
+  expiresAt: string;
+  summary: string;
+}
+
+export interface StoredApprovalDecision extends ApprovalDecision {
+  requestId: string;
+  decidedAt: string;
+}
+
 export interface ApprovalProvider {
   request(tool: ToolRequest, input: JsonObject): Promise<ApprovalDecision>;
 }

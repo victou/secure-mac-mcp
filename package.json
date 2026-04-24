@@ -9,6 +9,9 @@
   },
   "scripts": {
     "dev": "tsx packages/mcp-server/src/index.ts",
+    "approval:list": "tsx packages/mcp-server/src/approval-cli.ts list",
+    "approval:approve": "tsx packages/mcp-server/src/approval-cli.ts approve",
+    "approval:deny": "tsx packages/mcp-server/src/approval-cli.ts deny",
     "build": "tsc -p tsconfig.json",
     "test": "vitest run",
     "lint": "eslint .",

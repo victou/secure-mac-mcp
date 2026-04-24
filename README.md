@@ -43,6 +43,22 @@ SECURE_MAC_MCP_APPROVAL_MODE=auto pnpm dev
 
 Only use `auto` for a trusted local setup. The policy engine still validates schemas and allowlists tools, but approval-gated tools no longer stop for a user decision.
 
+For a traceable local approval flow, use the file approval provider:
+
+```sh
+SECURE_MAC_MCP_APPROVAL_MODE=file pnpm dev
+```
+
+Approval requests are written under `.secure-mac-mcp/approvals/pending`. In another terminal, use:
+
+```sh
+pnpm approval:list
+pnpm approval:approve <request-id>
+pnpm approval:deny <request-id>
+```
+
+This file-based flow is the bridge toward the future desktop approval UI in `apps/desktop`.
+
 ## Claude Desktop
 
 Add a server entry that launches the stdio MCP server:
@@ -54,7 +70,7 @@ Add a server entry that launches the stdio MCP server:
       "command": "pnpm",
       "args": ["--dir", "/absolute/path/to/secure-mac-mcp", "dev"],
       "env": {
-        "SECURE_MAC_MCP_APPROVAL_MODE": "auto"
+        "SECURE_MAC_MCP_APPROVAL_MODE": "file"
       }
     }
   }
@@ -71,7 +87,7 @@ Add a server entry that launches the stdio MCP server:
       "command": "pnpm",
       "args": ["--dir", "/absolute/path/to/secure-mac-mcp", "dev"],
       "env": {
-        "SECURE_MAC_MCP_APPROVAL_MODE": "auto"
+        "SECURE_MAC_MCP_APPROVAL_MODE": "file"
       }
     }
   }

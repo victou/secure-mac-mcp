@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { AutoApprovalProvider, DenyByDefaultApprovalProvider } from "../../core/src/index.js";
 import { createApprovalProvider } from "./approval-config.js";
+import { FileApprovalProvider } from "./file-approval-provider.js";
 
 describe("approval config", () => {
   it("uses deny-by-default when no approval mode is configured", () => {
@@ -9,6 +10,10 @@ describe("approval config", () => {
 
   it("uses auto approval when explicitly configured", () => {
     expect(createApprovalProvider("auto")).toBeInstanceOf(AutoApprovalProvider);
+  });
+
+  it("uses file approval when explicitly configured", () => {
+    expect(createApprovalProvider("file")).toBeInstanceOf(FileApprovalProvider);
   });
 
   it("rejects unknown approval modes", () => {
